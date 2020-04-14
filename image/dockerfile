@@ -1,0 +1,13 @@
+FROM node:12.16.1-alpine
+
+ADD ./src /var/app
+
+# setup entrypoint file and apply execution rights
+ADD entrypoint.sh /bootstrap/entrypoint.sh
+
+WORKDIR /var/app
+
+RUN npm i
+
+# send it
+ENTRYPOINT ["/bootstrap/entrypoint.sh"]

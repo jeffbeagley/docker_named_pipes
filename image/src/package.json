@@ -1,0 +1,26 @@
+{
+	"name": "src",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"commander": "^5.0.0",
+		"exec-sh": "^0.3.4",
+		"inquirer": "^7.1.0"
+	},
+	"prettier": {
+		"tabWidth": 4,
+		"bracketSpacing": false,
+		"singleQuote": true,
+		"printWidth": 200,
+		"useTabs": true,
+		"semi": false,
+		"arrowParens": "always",
+		"proseWrap": "never"
+	}
+}
