@@ -1,16 +1,20 @@
 #!/bin/bash
 
-pipe=/tmp/testpipe
+file=commands.txt
+touch $file
 
-trap "rm -f $pipe" EXIT
+docker build ./image/ -t pipe_test && docker run -it --rm --name=pipe_test -v $(pwd)/$file:/tmp/$file pipe_test $@
 
-if [[ ! -p $pipe ]]; then
-    mkfifo $pipe
-fi
+#now commands are added to commands.txt from container, lets read them in and execute them
+while IFS= read -r line
+do
+  $line
+done < $file
 
-./pipe_reader.sh &
 
-docker build ./image/ -t pipe_test && docker run -it --rm -v /tmp/testpipe:/tmp/testpipe -v --privileged pipe_test $@
+
+
+
 
 
 
