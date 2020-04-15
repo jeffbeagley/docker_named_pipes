@@ -2,7 +2,15 @@ const inquirer = require('inquirer')
 const program = require('commander')
 const execSh = require('exec-sh')
 
-program.command('run').action(() => {
+program.command('ps').action(() => {
+	out = execSh(`./pipe_writer.sh docker ps`)
+})
+
+program.command('ls').action(() => {
+	out = execSh(`./pipe_writer.sh ls -lh`)
+})
+
+program.command('question').action(() => {
 		inquirer
 			.prompt([
 				{
@@ -22,10 +30,8 @@ program.command('run').action(() => {
 				}
 			])
 			.then((answers) => {
-				out = execSh(`./pipe_writer.sh ${answers.env}`, true)
+				out = execSh(`./pipe_writer.sh docker ps`, true)
 			})
-
-
 })
 
 program.on('command:*', function () {

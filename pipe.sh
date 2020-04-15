@@ -8,9 +8,9 @@ if [[ ! -p $pipe ]]; then
     mkfifo $pipe
 fi
 
-./pipe_reader.sh & 
+./pipe_reader.sh &
 
-docker build ./image/ -t pipe_test && docker run -it -v /tmp/testpipe:/tmp/testpipe -v --privileged pipe_test "run"
+docker build ./image/ -t pipe_test && docker run -it --rm -v /tmp/testpipe:/tmp/testpipe -v --privileged pipe_test $@
 
 
 

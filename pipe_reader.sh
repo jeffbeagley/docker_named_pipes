@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -o pipefail
+
 pipe=/tmp/testpipe
 
 if [[ ! -p $pipe ]]; then
@@ -7,10 +9,10 @@ if [[ ! -p $pipe ]]; then
     exit 1
 fi
 
-while true
+while true 
 do
     if read line <$pipe; then
-        echo $line
-		exit 1
+		exec $line
     fi
 done
+

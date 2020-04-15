@@ -8,7 +8,7 @@ if [[ ! -p $pipe ]]; then
 fi
 
 if [[ "$1" ]]; then
-    echo "$@" > $pipe
+    echo "$@" >> $pipe
 else
     echo "Hello from $$" >$pipe
 fi
